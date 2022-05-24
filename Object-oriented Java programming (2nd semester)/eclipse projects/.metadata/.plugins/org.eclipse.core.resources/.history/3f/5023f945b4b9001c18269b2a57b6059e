@@ -1,0 +1,196 @@
+package my_lab3;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.BorderLayout;
+import javax.swing.JTextField;
+import java.awt.Color;
+import javax.swing.JRadioButton;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.util.Scanner;
+import java.awt.event.ActionEvent;
+import java.awt.Font;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import java.awt.Toolkit;
+
+public class Main {
+
+	private JFrame frame;
+	private JTextField textField;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Main window = new Main();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Main() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 15));
+		frame.setBounds(100, 100, 684, 358);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("\u0412\u044B\u0432\u043E\u0434 \u0447\u0438\u0441\u043B\u0430"); //Вывод числа
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel.setBounds(10, 11, 407, 298);
+		frame.getContentPane().add(lblNewLabel);
+		
+
+		
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("While");
+		rdbtnNewRadioButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		rdbtnNewRadioButton.setSelected(true);
+		rdbtnNewRadioButton.setBounds(592, 11, 60, 29);
+		frame.getContentPane().add(rdbtnNewRadioButton);
+		
+		JLabel lblNewLabel_1 = new JLabel("\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0447\u0438\u0441\u043B\u043E:"); //Введите число
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_1.setBounds(438, 9, 149, 29);
+		frame.getContentPane().add(lblNewLabel_1);
+		
+		textField = new JTextField();
+		textField.setBounds(438, 54, 214, 29);
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		JButton btnNewButton = new JButton("Enter");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				int n = Integer.parseInt(textField.getText());
+				String answer = "";
+				
+		        int i = 0; // переменная для циклов
+		        int j = 0; // переменная для циклов
+	        	int a = 1; // переменная считающая строки
+	        	int b = 1; // переменная считающая столбцы
+	        	answer += ("<html>");
+	        	
+	        	if (rdbtnNewRadioButton.isSelected()) {
+	        		
+	        		while (a <= n) { // цикл сдвига строк
+		        		
+		            	while (b <= n) { // цикл добавления цифр от меньшего к большему "лесенкой"
+		            		answer += (b + "&ensp;");
+		            		b++;
+		            	}
+		        		b = 1 + a; // обновление первого числа в строке
+		        		answer += ("<br>");
+		            	if (a < n) {
+		            		i = 0;
+		            		
+		            		while (i < a * 2) { // цикл добавления пробедлов перед цифрами
+		            			answer += ("&ensp;");
+		            			i++;
+		            		}
+		            	}
+		            	a++;
+		        	}
+		        	
+		        	a = 2;
+		        	
+		        	while (a <= n) { // цикл добавления пробелов перед цифрами
+		        		i = 0;
+		        		
+		        		while (i < (n - 1) * 2) { // цикл добавления пробелов перед цифрами
+		        			answer += ("&ensp;");
+		        			i++;
+		        		}
+		        		j = 0; // переменная с помощбю которой уменьшается число
+		        		
+		            	while (j < a) { // цикл вывода цифр от большего к меньшему "лесенкой"
+		            		answer += (n - j + "&ensp;");
+		            		j++;
+		            	}
+		            	answer += ("<br>");
+		            	a++;
+		        	}
+		        	answer += ("</html>");
+	        	}
+	        	
+	        	
+	        	
+	        	else {
+		        	if (n != 0) {
+		        		
+		            	do { //цикл сдвига строк
+		            		
+		                	do { //цикл добавления цифр от меньшего к большему "лесенкой"
+		                		answer += (b + "&ensp;");
+		                		b++;
+		                	} while (b <= n);
+		            		b = 1 + a; //обновление первого числа в строке
+		            		answer += ("<br>");
+		                	if (a < n) {
+		                		i = 0;
+		                		
+		                		do { // цикл добавления пробедлов перед цифрами
+		                			answer += ("&ensp;");
+		                			i++;
+		                		} while (i < a * 2); 
+		                	}
+		                	a++;
+		            	} while (a <= n);
+		        	}
+		        	
+		        	
+		        	a = 2;
+		        	if ((n != 0) && (n != 1)) {
+		        		
+		        		do {
+		        			i = 0;
+		            		
+		            		do { // цикл добавления пробелов перед цифрами
+		            			answer += ("&ensp;");
+		            			i++;
+		            		} while (i < (n - 1) * 2);
+		            		j = 0; // переменная с помощбю которой уменьшается число
+		            		
+		                	do { //цикл вывода цифр от большего к меньшему "лесенкой"
+		                		answer += (n - j + "&ensp;");
+		                		j++;
+		                	} while (j < a);
+		                	answer += ("<br>");
+		                	a++;
+		            	} while (a <= n);
+		        	}
+	        	}
+	        	
+	        	lblNewLabel.setText(answer);
+				
+				
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNewButton.setBounds(507, 94, 89, 23);
+		frame.getContentPane().add(btnNewButton);
+		
+	}
+}

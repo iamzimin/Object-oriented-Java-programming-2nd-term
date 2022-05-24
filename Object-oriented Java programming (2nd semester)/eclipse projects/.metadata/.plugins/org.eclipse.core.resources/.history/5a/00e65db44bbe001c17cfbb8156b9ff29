@@ -1,0 +1,41 @@
+package lab11;
+
+public class MyList {
+	
+	private ListElem head = null;
+	
+	public void AddToHead(int newValue) {
+		ListElem elem = new ListElem();
+		elem.value = newValue;
+		elem.next = head;
+		head = elem;
+	}
+	
+	public String toSting() {
+		String str = "";
+		ListElem pos = head;
+		while (pos !=  null) {
+			str += pos.value + " ";
+			pos = pos.next;
+		}
+		return str;
+	}
+	
+	public boolean isEmpty() {
+		return head == null;
+	}
+	
+	public void clear() {
+		head = null;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

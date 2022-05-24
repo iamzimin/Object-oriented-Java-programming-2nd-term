@@ -1,0 +1,8 @@
+package lab11;
+
+public class listElem {
+
+	ListElem next;
+	int value;
+
+}

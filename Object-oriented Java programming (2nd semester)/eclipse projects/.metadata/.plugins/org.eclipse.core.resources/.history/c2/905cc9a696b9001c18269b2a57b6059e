@@ -1,0 +1,241 @@
+package lab9;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Scanner;
+import javax.swing.JTextField;
+import javax.swing.JPanel;
+
+public class MainWindow {
+	
+	private Scanner sc = null;
+
+	private JFrame frame;
+	private JTextField textField;
+	char [][] buffer = new char[100][500];
+	String word = "";
+	String text = "";
+	int count = 0;
+	private JTextField input2;
+	String html = "";
+	String path = "";
+	//char c[] = new char[100];
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MainWindow window = new MainWindow();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public MainWindow() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBackground(Color.BLACK);
+		frame.getContentPane().setBackground(Color.BLACK);
+		frame.getContentPane().setForeground(Color.WHITE);
+		frame.setBounds(100, 100, 867, 471);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("Current path:");
+		lblNewLabel_1.setForeground(Color.GREEN);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblNewLabel_1.setBounds(634, 340, 145, 40);
+		frame.getContentPane().add(lblNewLabel_1);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setFont(new Font("Arial", Font.PLAIN, 20));
+		textArea.setForeground(Color.WHITE);
+		textArea.setBackground(Color.BLACK);
+		textArea.setBounds(10, 11, 533, 410);
+		frame.getContentPane().add(textArea);
+		
+		textField = new JTextField();
+		textField.setForeground(Color.WHITE);
+		textField.setBackground(Color.BLACK);
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		textField.setBounds(559, 391, 282, 30);
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		
+		JButton btnNewButton = new JButton("Add file");
+		btnNewButton.setBackground(Color.BLACK);
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser jfc = new JFileChooser();
+				jfc.setFileSelectionMode(JFileChooser.OPEN_DIALOG);
+				if (jfc.showOpenDialog(frame) == JFileChooser.APPROVE_OPTION) {
+					textField.setText(jfc.getSelectedFile().getAbsolutePath());
+					path += "" + jfc.getSelectedFile().getAbsolutePath() + "";
+				}
+				
+				if (jfc.showOpenDialog(frame) == JFileChooser.APPROVE_OPTION) {
+					try {
+						Scanner sc = new Scanner(new File(jfc.getSelectedFile().getAbsolutePath()));
+						
+						while (sc.hasNext()) {
+							text += sc.nextLine() + "\n";
+						}
+						sc.close();
+						textArea.setText(text);
+					}
+					catch (IOException e1) {
+						e1.printStackTrace();
+					}
+				}
+				
+			}
+		});
+		btnNewButton.setBounds(559, 97, 90, 29);
+		frame.getContentPane().add(btnNewButton);
+		
+		
+		/*JTextArea input = new JTextArea();
+		input.setColumns(10);
+		input.setRows(10);
+		input.setBackground(Color.BLACK);
+		input.setForeground(Color.WHITE);
+		input.setFont(new Font("Monospaced", Font.BOLD, 18));
+		input.setBounds(10, 59, 245, 30);
+		frame.getContentPane().add(input);*/
+		
+		input2 = new JTextField();
+		input2.setForeground(Color.WHITE);
+		input2.setFont(new Font("Monospaced", Font.BOLD, 18));
+		input2.setColumns(10);
+		input2.setBackground(Color.BLACK);
+		input2.setBounds(559, 62, 282, 30);
+		frame.getContentPane().add(input2);
+		
+		
+		
+		
+		
+		JButton btnNorka = new JButton("Do it");
+		btnNorka.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnNorka.setForeground(Color.WHITE);
+		btnNorka.setBackground(Color.BLACK);
+		btnNorka.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				html = "";
+				StringBuilder sb = new StringBuilder(textArea.getText());
+				
+				word = input2.getText();
+				
+				if (!word.isEmpty()) {
+					String textEdit = sb.toString();
+			        char [] textChar = textEdit.toCharArray();
+			        
+					String wordEdit = word.toString();
+			        char [] wordChar = wordEdit.toCharArray();
+			        
+					int lengthWord = word.length();
+					int idWord = 0;
+					for (int i = 0; i < sb.length() - 1; i++) {
+						
+						if (textChar[i] == ' ' || textChar[i] == '\n') {
+							idWord = 0;
+							i++; //чтобы не был на пробеле
+							for (int z = 1; z <= lengthWord; z++, i++) {
+								
+								if (textChar[i] != wordChar[idWord]) {
+									break;
+								}
+								if (z == lengthWord) {
+									count++;
+								}
+								idWord++;
+							}
+						}
+					}
+				}
+				
+				
+				//html
+				html += "<html>\n\n\n"
+						
+						+ " <head>\n"
+						+ " <title>Лабораторная №9</title>\n"
+						+ " <style>\r\n"
+						+ " body {\r\n"
+						+ " background: #000000 url(black_hole.jpg); \r\n" 
+						+ " background-repeat: no-repeat; \r\n"
+						+ " font-size: 1.7vw; \r\n"
+						+ " color: #fff;\r\n"
+						+ " }\r\n"
+						+ " </style>"
+						+ " </head>\n\n"
+						
+						+ " <body>\n"
+						+ " <b><p align=\"center\">Лабораторная работа №9</p></b>\n"
+						+ " <i><p align=\"center\">Вариант B</p></i>\n\n"
+						+ " <p align=\"left\">Выполнил студент группы <i>ИВТАСбд-11 <b>Зимин Евгений</b></i></p></i>\n"
+						+ " <p align=\"left\">Файл: <b>" + path + "</b>"
+						+ " <p align=\"left\">Начало слова: <b>" + word + "</b></p></i>\n"
+						+ " <p align=\"left\">Количество найденных слов: <b>" + count + "</b></p></i>\n"
+						+ " </body>"
+						
+						+ " </html>";
+				
+				JFileChooser fd = new JFileChooser();
+				int res = fd.showSaveDialog(frame);
+				if (res == JFileChooser.APPROVE_OPTION) {
+					try {
+						BufferedWriter bw = new BufferedWriter(new FileWriter(new File(fd.getSelectedFile().getAbsolutePath())));
+						bw.write(html);
+						bw.close();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
+		btnNorka.setBounds(751, 97, 90, 29);
+		frame.getContentPane().add(btnNorka);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Enter the word:");
+		lblNewLabel_1_1.setForeground(Color.YELLOW);
+		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblNewLabel_1_1.setBounds(614, 11, 165, 40);
+		frame.getContentPane().add(lblNewLabel_1_1);
+		
+	}	
+}

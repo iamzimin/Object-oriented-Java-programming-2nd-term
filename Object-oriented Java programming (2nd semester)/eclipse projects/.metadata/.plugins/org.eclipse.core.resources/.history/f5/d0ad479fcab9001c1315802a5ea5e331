@@ -1,0 +1,126 @@
+package my_lab4;
+
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Polygon;
+import javax.swing.JPanel;
+
+public class MyPanel extends JPanel {
+	
+	 public void paint(Graphics g) {
+		  super.paint(g);
+		  
+		  grass(g, 0, 386);
+		  
+		  tree(g, 50, 325);
+		  tree(g, 180, 325);
+		  tree(g, 300, 325);
+		  tree(g, 450, 325);
+		  tree(g, 600, 325);
+		  tree(g, 750, 325);
+		  
+		  sun(g, 10, 15, 70);
+		  
+		  cloud(g, 200, 20);
+		  cloud(g, 400, 22);
+		  cloud(g, 300, 17);
+		  
+		  rain(g, 240, 40, 35);
+		  rain(g, 220, 60, 36);
+		  rain(g, 210, 80, 36);
+		  rain(g, 200, 100, 36);
+		  rain(g, 190, 120, 36);
+		  rain(g, 180, 140, 36);
+		  rain(g, 170, 160, 36);
+		  rain(g, 160, 180, 36);
+		  rain(g, 150, 200, 36);
+		  rain(g, 140, 220, 36);
+		  rain(g, 130, 240, 36);
+		  rain(g, 120, 260, 36);
+		  rain(g, 110, 280, 36);
+		  rain(g, 100, 300, 36);
+		  rain(g, 90, 320, 36);
+		  rain(g, 80, 340, 36);
+		  rain(g, 70, 360, 36);
+		  rain(g, 60, 380, 36);
+		  rain(g, 50, 400, 36);
+		 }
+
+	 public void rain(Graphics g, int X1, int Y1, int COUNT) {
+		 g.setColor(Color.blue);
+		 int x = X1;
+		 int y = Y1;
+		 int count = COUNT;
+		 
+		 for (int i = 0; i < count; i++) { 
+			 g.drawLine(x + (i * 15), y, (x - 10) + (i * 15), y + 10);
+		 }
+	 }
+	 
+	 public void grass(Graphics g, int X1, int Y1)
+	 {
+		 g.setColor(Color.green);
+		 
+		 int x[] = {X1, X1 + 15, X1 - 15};
+		 int y[] = {Y1, Y1 + 15, Y1 + 15};
+		 
+		  for (int i = 0; i < 50; i++) {
+			  x[0] += 20;
+			  x[1] += 20;
+			  x[2] += 20;
+			  Polygon p = new Polygon(x, y, 3);
+			  g.fillPolygon(p);
+		  }
+	 }
+	 
+	 public void tree(Graphics g, int X1, int Y1)
+	 {
+		 Color elka = new Color(30, 100, 50);
+		 g.setColor(elka);
+		 
+		 int x[] = {X1, X1 + 50, X1 - 50};
+		 int y[] = {Y1, Y1 + 45, Y1 + 45};
+		 for (int i = 0; i < 4; i++)
+		 {
+			  Polygon e = new Polygon(x, y, 3);
+			  g.fillPolygon(e);
+			  y[0] -= 27;
+			  y[1] -= 30;
+			  y[2] -= 30;
+			  x[1] -= 5;
+			  x[2] += 5;
+		 }
+		 
+		 Color stvol = new Color(75, 55, 35);
+		 g.setColor(stvol);
+		 
+		 int x1[] = {X1 - 8,  X1 - 8,  X1 + 8,  X1 + 8};
+		 int y1[] = {Y1 + 45, Y1 + 75, Y1 + 75, Y1 + 45};
+		 Polygon s = new Polygon(x1, y1, 4);
+		 g.fillPolygon(s);
+	 }
+
+	 public void cloud(Graphics g, int X1, int Y1)
+	 {
+		 Color oblako = new Color(80, 130, 250);
+		 g.setColor(oblako);
+		 
+		 g.fillOval(X1 + X1 / 6, Y1, X1 - X1 / 4, Y1 + (Y1 / 2) * 3);
+		 g.fillOval(X1 + X1 / 15, Y1 + Y1 / 7, X1 - X1 / 2, Y1 + (Y1 / 2) * 4);
+		 g.fillOval(X1 + X1 / 15, Y1 + Y1 / 7, X1 - X1 / 2, Y1 + (Y1 / 2) * 4);
+		 g.fillOval(X1 + X1 / 8,  Y1 - Y1 / 2, X1 - X1 / 2, Y1 + (Y1 / 2) * 2);
+		 g.fillOval(X1 + X1 / 5,  Y1 - Y1 / 5, X1 - (X1 / 3) * 9, Y1 + (Y1 / 2) * 3);
+		 g.fillOval(X1 + X1 / 3,  Y1 + Y1 / 4, X1 - (X1 / 3) * 2, (Y1 + Y1) / 2);
+	 }
+
+	 public void sun(Graphics g, int X, int Y, int SIZE)
+	 {
+		 int X1 = X;
+		 int Y1 = Y;
+		 int size = SIZE;
+		 
+		 Color oblako = new Color(220, 220, 0);
+		 g.setColor(oblako);
+		 g.fillOval(X1, Y1, size, size);
+	 }
+}

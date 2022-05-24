@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;ListElem&apos; in &apos;lab11_new.MyList.deleteElement(...)&apos; to &apos;listElem&apos;&#x0D;&#x0A;- Original project: &apos;lab11_new&apos;&#x0D;&#x0A;- Original element: &apos;lab11_new.MyList.deleteElement(String).ListElem&apos;&#x0D;&#x0A;- Renamed element: &apos;ListElem&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;ListElem&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;lab11_new{MyList.java[MyList~deleteElement~QString;@ListElem!284!308!293!300!QListElem;!0!false" name="listElem" references="true" stamp="1650214502932" version="1.0"/>
+</session>

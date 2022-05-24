@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;cur&apos; in &apos;lab11.MyList.addByIndex(...)&apos; to &apos;listElem&apos;&#x0D;&#x0A;- Original project: &apos;lab11&apos;&#x0D;&#x0A;- Original element: &apos;lab11.MyList.addByIndex(String, int).cur&apos;&#x0D;&#x0A;- Renamed element: &apos;cur&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;cur&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;lab11{MyList.java[MyList~addByIndex~QString;~I@cur!1623!1642!1632!1634!QListElem;!0!false" name="listElem" references="true" stamp="1650948854607" version="1.0"/>
+</session>

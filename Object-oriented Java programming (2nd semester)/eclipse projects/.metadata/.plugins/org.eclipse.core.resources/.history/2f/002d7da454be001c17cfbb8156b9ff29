@@ -1,0 +1,46 @@
+package lab11;
+
+public class LinkList {
+	public Node head;
+	 public void createLinkList (int [] x) {// —оздать св€занный список
+		 Node pnew; // ќпределить новый узел
+		Node ptail = new Node();
+		head = ptail;
+		for(int i = 0; i < x.length; i ++) {
+			pnew = new Node();
+			pnew.setData(x[i]);
+			ptail.setNext(pnew);
+			ptail = pnew;
+		}		
+	}
+	
+	 public void displayLinkList () {// ¬се содержимое выходного св€занного списка пр€мой последовательности
+		Node node =  head.getNext();
+		while (node != null) {
+			System.out.print(node.getData() + " ");
+			node = node.getNext();
+		}
+		System.out.println("null");
+	}
+	
+	 public void reverseLinkList () {// ¬ывести все содержимое св€занного списка в обратном пор€дке
+		 if (head == null || head.getNext () == null) {// ≈сли св€занный список имеет только один головной узел или только один узел, обратный пор€док €вл€етс€ исходным св€занным списком, поэтому возвращайте напр€мую
+			return;
+		} else {
+			Node p = head.getNext();
+			Node q = head.getNext().getNext();
+			 p.setNext (null); // —ледующий узел первого узла будет пустым, иначе будет кольцо
+			Node temp = null;
+			while (q != null) {
+				temp = q.getNext();
+				q.setNext(p);
+				p = q;
+				q = temp;
+			}
+			if (q == null) {
+				head.setNext(p);
+				q = null;			
+			}
+		}		
+	}
+}

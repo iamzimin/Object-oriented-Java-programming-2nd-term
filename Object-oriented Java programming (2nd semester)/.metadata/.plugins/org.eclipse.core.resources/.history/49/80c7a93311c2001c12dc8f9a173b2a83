@@ -1,0 +1,216 @@
+package lab11;
+
+public class MyList {
+	
+	public ListElem head = null;
+	public ListElem tail = null;
+	private int count = 0;
+	int countNumberElem = 0;
+	private boolean err = false;
+	
+	public void AddToHead(String newValue) {
+		ListElem elem = new ListElem();
+		elem.value = newValue;
+		
+		if (count == 0) {              //работает
+			tail = elem;
+		}
+		else {
+			head.prev = elem;
+		}
+		elem.next = head;
+		head = elem;
+		
+        /*if(this.head == null){         //работает
+            this.head = elem;
+            this.tail = elem;
+        }else {
+            //node.next = this.head;
+            elem.setNext(this.head);
+            head.setPrev(elem);
+            head = elem;
+        }*/
+		count++;
+	}
+	
+	public void AddToTail(String newValue) { 
+		ListElem elem = new ListElem();
+		elem.value = newValue;
+		
+		if (count == 0) {
+			head = elem;
+		}
+		else {
+			tail.next = elem;
+		}
+		elem.prev = tail;
+		tail = elem;
+		
+		/*elem.next = null;
+		elem.prev = tail;
+		if (tail != null) {
+			tail.next = elem;
+		}
+		else {
+			tail = elem;
+		}*/
+		if (tail != null || head != null) {
+			count++;
+		}
+	}
+	
+	public void addByIndex(String newValue, int index) {
+		
+		err = false;
+		if (index < 0 || index > count) {
+			err = true;
+			return;
+		}
+		else if (index == 0) {
+			AddToHead(newValue);
+			return;
+		}
+		else if (index == count) {
+			AddToTail(newValue);
+			return;
+		}
+		
+		ListElem elem = new ListElem();
+		ListElem cur = head;
+		int c = 0;
+		
+		while (cur != null && c != index) {
+			cur = cur.next;
+			c++;
+		}
+		
+		elem.value = newValue;
+		cur.prev.next = elem;
+		elem.prev = cur.prev;
+		cur.prev = elem;
+		elem.next = cur;
+		
+		count++;
+	}
+	
+	public boolean error() {
+		if (err) {
+			return true;
+		}
+		return false;
+	}
+	
+	public void deleteElement(String newValue) {
+		ListElem listElem = head;
+		ListElem oldElem = null;
+		while (listElem != null) {
+
+			if (listElem.value.compareTo(newValue) == 0) {
+				
+				ListElem nextElem = listElem.next;
+				if (oldElem != null) {
+					oldElem.next = nextElem;
+				}
+				else {
+					head = nextElem;
+				}
+				
+			}
+			oldElem = listElem;
+			listElem = listElem.getNext();
+		}
+		
+		count--;
+	}
+	
+	public String toString() {
+		String str = "";
+		ListElem pos = head;
+		while (pos !=  null) {
+			str += pos.value + " ";
+			pos = pos.next;
+		}
+		return str;
+	}
+	
+	public String displayList() {
+		ListElem ListElem = head;
+		String output = "";
+		
+		while (ListElem != null) {
+			output += ListElem.getData() + " ";
+			ListElem = ListElem.getNext();
+		}
+		
+		return output;
+	}
+	
+	public String displayElemHead(int number) {
+		ListElem activeElem = head;
+
+		if (/*number < 0 || */number > count) {
+			return "This right Element";
+		}
+		
+		for (int i = 0; i < number; i++) {
+			if (/*number < 0 || */number >= count) {
+				return "This right Element";
+			}
+			activeElem = activeElem.next;
+			countNumberElem++;
+
+		}
+		return activeElem.value;
+	}
+	
+	public String displayElemTail(int number) {
+		ListElem activeElem = head;
+
+		if (number < 0/* || number > count*/) {
+			return "This left Element";
+		}
+		
+		for (int i = 0; i < number; i++) {
+			if (number < 0/* || number > count*/) {
+				return "This left Element";
+			}
+			activeElem = activeElem.next;
+			countNumberElem++;
+
+		}
+		return activeElem.value;
+	}
+	
+	public void reverseList () {
+		
+		 if (head == null || head.getNext() == null) {
+			return;
+		} else {
+			ListElem p = head;
+			ListElem q = head.getNext();
+			p.setNext(null);
+			ListElem temp = null;
+			while (q != null) {
+				temp = q.getNext();
+				q.setNext(p);
+				p = q;
+				q = temp;
+			}
+			if (q == null) {
+				head = p;
+				q = null;			
+			}
+			
+		}		
+	}
+	
+	public boolean isEmpty() {
+		return head == null;
+	}
+	
+	public void clear() {
+		head = null;
+		count = 0;
+	}
+	
+}

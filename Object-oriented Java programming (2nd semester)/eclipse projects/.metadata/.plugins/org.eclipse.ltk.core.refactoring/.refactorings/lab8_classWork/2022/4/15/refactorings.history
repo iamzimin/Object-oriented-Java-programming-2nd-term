@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;lab8_classWork.MainWindow&apos; to &apos;MainWindow8&apos;&#x0D;&#x0A;- Original project: &apos;lab8_classWork&apos;&#x0D;&#x0A;- Original element: &apos;lab8_classWork.MainWindow&apos;&#x0D;&#x0A;- Renamed element: &apos;lab8_classWork.MainWindow8&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;MainWindow&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;lab8_classWork{MainWindow.java[MainWindow" matchStrategy="1" name="MainWindow8" qualified="false" references="true" similarDeclarations="false" stamp="1650202149707" textual="false" version="1.0"/>
+</session>

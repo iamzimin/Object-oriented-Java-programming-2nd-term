@@ -1,0 +1,13 @@
+package lab11;
+
+public class lab11 {
+
+	public static void main(String[] args) {
+		MyList list = new MyList();
+		list.AddToHead(5);
+		list.AddToHead(10);
+		list.AddToHead(15);
+		System.out.println(list.toString());
+	}
+
+}

@@ -1,0 +1,21 @@
+package lab11_new;
+
+public class ListElem {
+	
+	ListElem next;
+	String value;
+	
+	public String getData() {
+		return value;
+	}
+	public void setData(String str) {
+		this.value = str;
+	}
+	public ListElem getNext() {
+		return next;
+	}
+	public void setNext(ListElem next) {
+		this.next = next;
+	}
+	
+}

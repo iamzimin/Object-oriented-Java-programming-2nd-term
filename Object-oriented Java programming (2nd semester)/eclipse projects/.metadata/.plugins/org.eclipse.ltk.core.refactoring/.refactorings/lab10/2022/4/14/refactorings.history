@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;array2&apos; in &apos;lab10.MainWindow.initialize().new ActionListener() {...}.actionPerformed(...)&apos; to &apos;list&apos;&#x0D;&#x0A;- Original project: &apos;lab10&apos;&#x0D;&#x0A;- Original element: &apos;lab10.MainWindow.initialize().new ActionListener() {...}.actionPerformed(ActionEvent).array2&apos;&#x0D;&#x0A;- Renamed element: &apos;array2&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;array2&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;lab10{MainWindow.java[MainWindow~initialize[!2~actionPerformed~QActionEvent;@array2!4626!4673!4637!4642!\[\[QString;!0!false" name="list" references="true" stamp="1649081046641" version="1.0"/>
+</session>

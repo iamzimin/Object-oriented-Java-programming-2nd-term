@@ -1,0 +1,250 @@
+package lab12;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.LinkedList;
+
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.JRadioButton;
+import javax.swing.JSpinner;
+
+public class MainWindow12 {
+		
+	//MyList list = new MyList();
+	LinkedList<String> list2 = new LinkedList<String>();
+	
+	private JFrame frame;
+	char [][] buffer = new char[10][15];
+	String stringToken = "";
+	boolean flag = true;
+	boolean first = true;
+	StringBuilder sb;
+	String text = "";
+	
+	
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MainWindow12 window = new MainWindow12();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public MainWindow12() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		
+		frame = new JFrame();
+		frame.setBackground(Color.BLACK);
+		frame.getContentPane().setBackground(Color.BLACK);
+		frame.getContentPane().setForeground(Color.WHITE);
+		frame.setBounds(100, 100, 1050, 447);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JTextArea textArea_1 = new JTextArea();
+		textArea_1.setFont(new Font("Arial", Font.PLAIN, 25));
+		textArea_1.setBounds(115, 18, 270, 33);
+		frame.getContentPane().add(textArea_1);		
+		
+		JButton btnHead = new JButton("Head");
+		btnHead.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				text = textArea_1.getText();
+				if (text.isEmpty()) {
+					return;
+				}
+				//list.AddToHead(text);
+
+			}
+		});
+		btnHead.setForeground(Color.GRAY);
+		btnHead.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnHead.setBackground(Color.BLACK);
+		btnHead.setBounds(529, 18, 75, 33);
+		frame.getContentPane().add(btnHead);
+		
+		JButton btnTail = new JButton("Tail");
+		btnTail.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				text = textArea_1.getText();
+				if (text.isEmpty()) {
+					return;
+				}
+				//list.AddToTail(text);
+				
+			}
+		});
+		btnTail.setForeground(Color.GRAY);
+		btnTail.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnTail.setBackground(Color.BLACK);
+		btnTail.setBounds(610, 18, 75, 33);
+		frame.getContentPane().add(btnTail);
+		
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				text = textArea_1.getText();
+				if (text.isEmpty()) {
+					return;
+				}
+				//list.deleteElement(text);
+				
+			}
+		});
+		btnDelete.setForeground(Color.GRAY);
+		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnDelete.setBackground(Color.BLACK);
+		btnDelete.setBounds(691, 18, 95, 34);
+		frame.getContentPane().add(btnDelete);	
+		
+		JTextArea txtrOutput = new JTextArea();
+		txtrOutput.setText("                                       \"output\"");
+		txtrOutput.setForeground(Color.WHITE);
+		txtrOutput.setBackground(Color.BLACK);
+		txtrOutput.setFont(new Font("Arial", Font.PLAIN, 30));
+		txtrOutput.setBounds(10, 69, 761, 328);
+		frame.getContentPane().add(txtrOutput);
+		
+		JRadioButton rdbtnReverse = new JRadioButton("Reverse output");
+		rdbtnReverse.setForeground(Color.WHITE);
+		rdbtnReverse.setBackground(Color.BLACK);
+		rdbtnReverse.setFont(new Font("Arial", Font.PLAIN, 20));
+		rdbtnReverse.setBounds(819, 18, 180, 33);
+		frame.getContentPane().add(rdbtnReverse);
+		
+		JButton btnProcessing = new JButton("Print");      ///////result
+		btnProcessing.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {		
+				
+				/*if (list.isEmpty()) {
+					txtrOutput.setText("null");
+				}
+				else {
+					if (rdbtnReverse.isSelected()) {
+						if (flag) {
+							list.reverseList();
+						}
+						txtrOutput.setText(list.displayList());
+						flag = false;
+					}
+					if (!rdbtnReverse.isSelected()) {
+						if (!flag) {
+							list.reverseList();
+						}
+						txtrOutput.setText(list.displayList());
+						flag = true;
+					}
+				}
+				
+				if (list.error()) {
+					txtrOutput.setText("Ошибка в вводе индекса\nИзмените индекс и повторите попытку");
+				}*/
+				
+			}
+		});
+		btnProcessing.setForeground(Color.WHITE);
+		btnProcessing.setFont(new Font("Tahoma", Font.BOLD, 20));
+		btnProcessing.setBackground(Color.BLACK);
+		btnProcessing.setBounds(781, 66, 243, 33);
+		frame.getContentPane().add(btnProcessing);	
+		
+		JButton btnClear = new JButton("Clear");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				//list.clear();
+				first = true;
+				
+			}
+		});
+		btnClear.setForeground(Color.BLUE);
+		btnClear.setFont(new Font("Tahoma", Font.BOLD, 20));
+		btnClear.setBackground(Color.BLACK);
+		btnClear.setBounds(781, 110, 243, 33);
+		frame.getContentPane().add(btnClear);
+		
+		JButton btnSave = new JButton("Save file");                       /////save file
+		btnSave.setBackground(Color.BLACK);
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fd = new JFileChooser();
+				int res = fd.showSaveDialog(frame);
+				if (res == JFileChooser.APPROVE_OPTION) {
+					try {
+						BufferedWriter bw = new BufferedWriter(new FileWriter(new File(fd.getSelectedFile().getAbsolutePath())));
+						bw.write(txtrOutput.getText());
+						bw.close();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
+		btnSave.setForeground(Color.RED);
+		btnSave.setFont(new Font("Tahoma", Font.BOLD, 20));
+		btnSave.setBounds(781, 154, 243, 33);
+		frame.getContentPane().add(btnSave);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Element:");
+		lblNewLabel_1_1.setForeground(Color.GREEN);
+		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblNewLabel_1_1.setBounds(10, 18, 95, 33);
+		frame.getContentPane().add(lblNewLabel_1_1);
+		
+		JSpinner spinner = new JSpinner();
+		spinner.setBounds(395, 19, 45, 31);
+		frame.getContentPane().add(spinner);
+		
+		JButton btnAdd = new JButton("Add");
+		btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				text = textArea_1.getText();
+				int index = (Integer)spinner.getValue();
+				if (text.isEmpty()) {
+					return;
+				}
+				//list.addByIndex(text, index);
+				
+			}
+		});
+		btnAdd.setForeground(Color.GRAY);
+		btnAdd.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnAdd.setBackground(Color.BLACK);
+		btnAdd.setBounds(448, 18, 75, 33);
+		frame.getContentPane().add(btnAdd);
+
+	}
+}

@@ -1,0 +1,211 @@
+package my_lab3;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.BorderLayout;
+import javax.swing.JTextField;
+import java.awt.Color;
+import javax.swing.JRadioButton;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.util.Scanner;
+import java.awt.event.ActionEvent;
+import java.awt.Font;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import java.awt.Toolkit;
+
+public class Main_lab3 {
+
+	private JFrame frame;
+	private JTextField textField;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Main_lab3 window = new Main_lab3();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Main_lab3() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 15));
+		frame.setBounds(100, 100, 538, 400);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("\u0412\u044B\u0432\u043E\u0434 \u0447\u0438\u0441\u043B\u0430"); //Вывод числа
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel.setBounds(10, 11, 265, 339);
+		frame.getContentPane().add(lblNewLabel);
+		
+
+		
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("While");
+		rdbtnNewRadioButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		rdbtnNewRadioButton.setSelected(true);
+		rdbtnNewRadioButton.setBounds(451, 11, 60, 29);
+		frame.getContentPane().add(rdbtnNewRadioButton);
+		
+		JLabel lblNewLabel_1 = new JLabel("\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0447\u0438\u0441\u043B\u043E:"); //Введите число
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_1.setBounds(297, 9, 149, 29);
+		frame.getContentPane().add(lblNewLabel_1);
+		
+		textField = new JTextField();
+		textField.setBounds(297, 49, 214, 29);
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		JButton btnNewButton = new JButton("Enter");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				int maxN = Integer.parseInt(textField.getText());
+				String answer = "";
+				
+		        int i = 0; 
+
+	        	answer += ("<html>");
+	        	
+	        	if (rdbtnNewRadioButton.isSelected()) {
+	        		
+	        		int n = maxN;
+	            	int countString = 1;
+	            	int number = n; 
+	            	
+	            	while (countString <= n) {
+	            		i = 0;
+	            		while (i < n * 2) {
+	            			answer += ("&ensp;");
+	            			i++;
+	            		}	
+	            		
+	                	number = n;
+	                	while (number <= maxN) {
+	            			answer += (number + "&ensp;");
+	                		number++;
+	                	}
+		            	answer += ("<br>");
+	                	n--;
+	            	}
+	            	
+	            	
+	            	countString = 1;
+	            	number = 1;
+	            	n = maxN;
+
+	            	while (countString < n) {
+	            		i = 0;
+	            		while (i < (countString + 1) * 2) {
+	            			answer += ("&ensp;");
+	            			i++;
+	            		}
+	            		countString++;
+	            		
+	            		number = countString;
+	                	while (number <= maxN) {
+	            			answer += (number + "&ensp;");
+	                		number++;
+	                	}
+		            	answer += ("<br>");
+	            	}  
+
+		        	answer += ("</html>");
+	        	}
+	        	
+	        	
+	        	
+	        	
+	        	
+	        	
+	        	else {
+	        		
+	                int n = maxN;
+	            	int countString = 1;
+	            	int number = n;
+	            	
+	            	if (n == 0) {
+	            	}
+	            	else if (n == 1) {
+			        	answer += ("1");
+	            	}
+	            	else {
+	            		do {
+	                		i = 0;
+	                		do { 
+		            			answer += ("&ensp;");
+	                			i++;
+	                		} while (i < n * 2);
+	                		
+	                    	number = n;
+	                    	do {
+		            			answer += (number + "&ensp;");
+	                    		number++;
+	                    	} while (number <= maxN);
+			            	answer += ("<br>");
+	                    	
+	                    	n--;
+	                    	
+	                	} while (countString <= n);
+	                	
+	                	countString = 1;
+	                	number = 1;
+	                	n = maxN;
+
+	                	do { 
+	                		i = 0;
+	                		do { 
+		            			answer += ("&ensp;");
+	                			i++;
+	                		} while (i < (countString + 1) * 2);
+	                		countString++;
+	                		
+	                		number = countString;
+	                    	do {
+		            			answer += (number + "&ensp;");
+	                    		number++;
+	                    	} while (number <= maxN);
+			            	answer += ("<br>");
+	                	} while (countString < n);
+	            	}
+	        		
+	        		
+	        		answer += ("</html>");
+	        	}
+	        	
+	        	
+	        	lblNewLabel.setText(answer);
+				
+				
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnNewButton.setBounds(357, 93, 89, 23);
+		frame.getContentPane().add(btnNewButton);
+		
+	}
+}

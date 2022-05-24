@@ -1,0 +1,126 @@
+package my_lab;
+
+import java.util.Scanner;
+
+public class Main_lab2 {
+
+	public static void main(String[] args) {
+		System.out.print("¬ведите \n"
+				+ " 1 - while \n"
+				+ " 2 - do while: ");
+
+        Scanner variant = new Scanner(System.in);
+        int x = variant.nextInt();
+
+        int i = 0;
+        
+        if (x == 1) {
+        	Scanner sc = new Scanner(System.in);
+            System.out.print("¬ведите n: ");
+            int maxN = sc.nextInt();
+            int n = maxN;
+        	int countString = 1;
+        	int number = n; 
+        	
+        	while (countString <= n) {
+        		i = 0;
+        		while (i < n * 2) {
+        			System.out.print(" ");
+        			i++;
+        		}	
+        		
+            	number = n;
+            	while (number <= maxN) {
+            		System.out.print(number + " ");
+            		number++;
+            	}
+            	System.out.print("\n");
+            	n--;
+        	}
+        	
+        	
+        	countString = 1;
+        	number = 1;
+        	n = maxN;
+
+        	while (countString < n) {
+        		i = 0;
+        		while (i < (countString + 1) * 2) {
+        			System.out.print(" ");
+        			i++;
+        		}
+        		countString++;
+        		
+        		number = countString;
+            	while (number <= maxN) {
+            		System.out.print(number + " ");
+            		number++;
+            	}
+            	System.out.print("\n");
+        	}  
+        	sc.close();
+        }
+        
+        
+        
+        
+        
+        
+        
+        if (x == 2) {
+        	Scanner sc = new Scanner(System.in);
+            System.out.print("¬ведите n: ");
+            int maxN = sc.nextInt();
+            int n = maxN;
+        	int countString = 1;
+        	int number = n;
+        	
+        	if (n == 0) {
+        	}
+        	else if (n == 1) {
+        		System.out.print("1");
+        	}
+        	else {
+        		do {
+            		i = 0;
+            		do { 
+            			System.out.print(" ");
+            			i++;
+            		} while (i < n * 2);
+            		
+                	number = n;
+                	do {
+                		System.out.print(number + " ");
+                		number++;
+                	} while (number <= maxN);
+                	System.out.print("\n");
+                	
+                	n--;
+                	
+            	} while (countString <= n);
+            	
+            	countString = 1;
+            	number = 1;
+            	n = maxN;
+
+            	do { 
+            		i = 0;
+            		do { 
+            			System.out.print(" ");
+            			i++;
+            		} while (i < (countString + 1) * 2);
+            		countString++;
+            		
+            		number = countString;
+                	do {
+                		System.out.print(number + " ");
+                		number++;
+                	} while (number <= maxN);
+                	System.out.print("\n");
+            	} while (countString < n);
+        	}
+        	sc.close();
+        }
+        variant.close();
+	}
+}
