@@ -1,0 +1,39 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class FileTest {
+
+	public static void main(String[] args) {
+		//***** Чтение всего содержимого файла в строку *****
+		String str = "";
+		try {
+			Scanner sc = new Scanner(new File("C:\\Temp\\Input.txt"));
+			while (sc.hasNext()) {
+				str += sc.nextLine() + "\r\n";
+			}
+			sc.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//***** Использование StringBuilder ******
+		StringBuilder sb = new StringBuilder(str);
+		int startPos = sb.indexOf("Second");
+		sb.replace(startPos, startPos + 6, "ItWasSecond");
+		str = sb.toString();
+		System.out.print(str);
+		//***** Запись в файл *****
+		try {
+			FileWriter fw = new FileWriter("C:\\Temp\\out.txt");
+			fw.write(str);
+			fw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+}
